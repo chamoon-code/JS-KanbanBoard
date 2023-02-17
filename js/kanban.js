@@ -20,8 +20,8 @@ const create_item = () => {
   item.classList.add('item');
   item.id = 'item-' + order;
   item.draggable = true;
-  item.addEventListener('dragstart', event => event.dataTranster.setData('text', event.target.id));
-  item.addEventListener('dragened', event => evet.dataTranster.clearData());
+  item.addEventListener('dragstart', event => event.dataTranster.setData('text',event.target.id));
+  item.addEventListener('dragend', event => event.dataTranster.clearData());
 
   let input = document.createElement('input');
   item.appendChild(input);
@@ -44,4 +44,10 @@ const create_item = () => {
 };
 
 document.querySelectorAll('.drop').forEach(element => {
+  element.addEventListener('drop', event => {
+    event.preventDefault();
+    const id = event.dataTranster.getData('text');
+    event.target.appendChild(document.getElementByID(id));
+  });
+  element.addEventListener('dragover', event => event.preventDefault());
 });
