@@ -47,7 +47,7 @@ document.querySelectorAll('.drop').forEach(element => {
   element.addEventListener('drop', event => {
     event.preventDefault();
     const id = event.dataTranster.getData('text');
-    event.target.appendChild(document.getElementByID('id'));
+    event.target.appendChild(document.getElementById(id));
   });
   element.addEventListener('dragover', event => event.preventDefault());
 });
