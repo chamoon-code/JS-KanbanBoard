@@ -16,6 +16,31 @@ add_btn.addEventListener('click', () => {
 });
 
 const create_item = () => {
+  let item = document.createElement('div');
+  item.classList.add('item');
+  item.id = 'item-' + order;
+  item.draggable = true;
+  item.addEventListener('dragstart', event => event.dataTranster.setData('text', event.target.id));
+  item.addEventListener('dragened', event => evet.dataTranster.clearData());
+
+  let input = document.createElement('input');
+  item.appendChild(input);
+
+  let save_btn = document.createElement('button');
+  save_btn.innerHTML = 'save';
+  save_btn.addEventListener('click', () => {
+    error.innerHTML = '';
+    if (input.value !=='') {
+      order += 1;
+      item.innerHTML = input.value;
+      adding = false;
+    } else {
+      error.innerHTML = message;
+    }
+  });
+  item.appendChild(save_btn);
+
+  return item;
 };
 
 document.querySelectorAll('.drop').forEach(element => {
